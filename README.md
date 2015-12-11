@@ -1,2 +1,0 @@
-# LudumProject
-LudumDare34Project
