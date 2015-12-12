@@ -55,12 +55,8 @@ public class PlayerController : MonoBehaviour
         {
             StateMachine.ChangeState(StateMachine.StateType.MENU);
         }
-        Debug.Log("Speed: " + _RB.velocity);
 
-        if (!_grounded /*&& _obstacleGrounded*/)
-        {
-            return;
-        }
+        if (!_grounded/* && _obstacleGrounded*/) return;
 
         if (transform.position.x < _xMainPosition)
         {

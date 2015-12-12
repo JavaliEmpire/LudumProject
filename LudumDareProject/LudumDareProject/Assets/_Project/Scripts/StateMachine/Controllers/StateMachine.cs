@@ -74,10 +74,12 @@ public class StateMachine : MonoBehaviour
 		{
 			if (__state.Value.stateType != p_stateType)
 			{
+				__state.Value.ADisable();
 				__state.Value.gameObject.SetActive(false);
 			}
 			else
 			{
+				__state.Value.AEnable();
 				__state.Value.gameObject.SetActive(true);
 			}
 		}

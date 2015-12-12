@@ -40,7 +40,7 @@ public class TimerCore : MonoBehaviour
 		{
 			_nodulesList[i].AUpdate();
 			
-			if (!_nodulesList[i].finished)
+			if (!_nodulesList[i].finished && !_nodulesList[i].stopped)
 			{
 				__updatedList.Add(_nodulesList[i]);
 			}
@@ -70,6 +70,8 @@ public class ATimerNodule
 
 	private bool _finished;
 
+	private bool _stopped = false;
+
 	#endregion	
 	
 	#region Public Data
@@ -77,6 +79,11 @@ public class ATimerNodule
 	public bool finished
 	{
 		get {return _finished;}
+	}
+
+	public bool stopped
+	{
+		get {return _stopped;}
 	}
 
 	#endregion
@@ -101,6 +108,11 @@ public class ATimerNodule
 		{
 			_timer += 1;
 		}
+	}
+
+	public void Stop()
+	{
+		_stopped = true;
 	}
 }
 

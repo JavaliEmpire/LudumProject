@@ -11,13 +11,18 @@ public class MachineState : MonoBehaviour
 
 	}
 
+	public virtual void AEnable()
+	{
+
+	}
+
 	public virtual void AUpdate()
 	{
 
 	}
 
-    public virtual void ADisable()
-    {
+	public virtual void ADisable()
+	{
 
-    }
+	}
 }

@@ -9,46 +9,63 @@ public class ObstacleManager : MonoBehaviour
 
     private Dictionary<int, List<GameObject>> _dictObstacles;
 
-    private List<GameObject> listObstaclesInstances;
+	private List<GameObject> _listObstaclesInstances = new List<GameObject>();
 
     private int _currentLevel = 1;
 
     [SerializeField] private float _spawnRate = 10f;
 
     private Vector3 _spawnPosition = new Vector3(15, -1, 0);
+	
+	ATimerNodule _spawnTimer;
 
     #endregion
 
-    void Awake()
+    public void Initialize()
     {
-        listObstaclesInstances = new List<GameObject>();
+		LoadData();
     }
 
-    public void AEnable()
-    {
-        LoadData();
-        SpawnRandomObstacle();
-    }
+	public void EnableSpawner()
+	{
+		SpawnNewObstacle();
+	}
+
+	public void DisableSpawner()
+	{
+		try { _spawnTimer.Stop(); }
+		catch{}
+
+		for (int i = 0; i < _listObstaclesInstances.Count; i++)
+		{
+			Destroy(_listObstaclesInstances[i]);
+		}
+
+		_listObstaclesInstances.Clear();
+	}
 
     public void AUpdate()
     {
-        for (int i = 0; i < listObstaclesInstances.Count; i ++)
+        for (int i = 0; i < _listObstaclesInstances.Count; i ++)
         {
-            if (listObstaclesInstances[i] == null)
+            if (_listObstaclesInstances[i] == null)
             {
-                listObstaclesInstances.RemoveAt(i);
+                _listObstaclesInstances.RemoveAt(i);
                 i--;
                 continue;
             }           
-            listObstaclesInstances[i].GetComponent<Obstacles>().AUpdate();
+            _listObstaclesInstances[i].GetComponent<Obstacles>().AUpdate();
         }
     }
 
-    private void SpawnRandomObstacle()
+    private void SpawnNewObstacle()
     {
         int __randomDifficultyLevel = UnityEngine.Random.Range(1, _currentLevel);
-        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);       
+
+        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);     
+
         GameObject __newObstacle = _dictObstacles[__randomDifficultyLevel][__randomObstacleIndex];
+
         switch (__newObstacle.GetComponent<Obstacles>().obstacleType)
         {
             case Obstacles.ObstacleType.ENEMY:
@@ -58,15 +75,16 @@ public class ObstacleManager : MonoBehaviour
                 _spawnPosition.y = UnityEngine.Random.Range(-1f, 1f);
                 break;
         }  
-        __newObstacle = Instantiate(__newObstacle, _spawnPosition, Quaternion.identity) as GameObject;
-        __newObstacle.name = __newObstacle.GetComponent<Obstacles>().obstacleType.ToString();
-        __newObstacle.transform.parent = this.transform;
-        listObstaclesInstances.Add(__newObstacle);
 
-        if (this.gameObject.activeSelf == false) return;
-        ATimer.WaitSeconds(_spawnRate, delegate
+        __newObstacle = Instantiate(__newObstacle, _spawnPosition, Quaternion.identity) as GameObject;
+
+        __newObstacle.transform.parent = this.transform;
+
+        _listObstaclesInstances.Add(__newObstacle);
+
+        _spawnTimer = ATimer.WaitSeconds(_spawnRate, delegate
         {
-            SpawnRandomObstacle();
+            SpawnNewObstacle();
         });
     }
 

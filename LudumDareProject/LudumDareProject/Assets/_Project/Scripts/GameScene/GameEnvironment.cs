@@ -15,8 +15,13 @@ public class GameEnvironment : MonoBehaviour
 
 	public void Initialize()
 	{
-        _obstacleManager.AEnable();
+		_obstacleManager.Initialize();
     }
+
+	public void EnableSpawn()
+	{
+		_obstacleManager.EnableSpawner();
+	}
 
 	public void AUpdate()
 	{
@@ -25,8 +30,8 @@ public class GameEnvironment : MonoBehaviour
 		_obstacleManager.AUpdate();
 	}
 
-    public void ADisable()
-    {
-
-    }
+	public void DisableSpawn()
+	{
+		_obstacleManager.DisableSpawner();
+	}
 }

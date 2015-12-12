@@ -45,18 +45,20 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CoinAction.cs" />
      <Compile Include="Assets\_Project\Scripts\Background\OffsetScroller.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TimerCore.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TweenCore.cs" />
      <Compile Include="Assets\_Project\Scripts\GameModel\GameModel.cs" />
      <Compile Include="Assets\_Project\Scripts\GameScene\GameEnvironment.cs" />
      <Compile Include="Assets\_Project\Scripts\MenuScene\ButtonEffects.cs" />
+     <Compile Include="Assets\_Project\Scripts\MenuScene\CoinAction.cs" />
      <Compile Include="Assets\_Project\Scripts\MenuScene\MenuCanvas.cs" />
      <Compile Include="Assets\_Project\Scripts\Obstacles\Enemy.cs" />
      <Compile Include="Assets\_Project\Scripts\Obstacles\Obstacle.cs" />
      <Compile Include="Assets\_Project\Scripts\Obstacles\ObstacleManager.cs" />
+     <Compile Include="Assets\_Project\Scripts\Obstacles\ObstacleUtility.cs" />
      <Compile Include="Assets\_Project\Scripts\Obstacles\Obstacles.cs" />
+     <Compile Include="Assets\_Project\Scripts\Obstacles\Utilities\Jump.cs" />
      <Compile Include="Assets\_Project\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\_Project\Scripts\Player\Weapon.cs" />
      <Compile Include="Assets\_Project\Scripts\StateMachine\Controllers\MachineState.cs" />

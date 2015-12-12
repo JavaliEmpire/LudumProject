@@ -11,14 +11,18 @@ public class GameState : MachineState
 		environment.Initialize();
 	}
 
+	public override void AEnable ()
+	{
+		environment.EnableSpawn();
+	}
+
 	public override void AUpdate ()
 	{
 		environment.AUpdate();
 	}
 
-    public override void ADisable()
-    {
-        environment.ADisable();
-    }
-
+	public override void ADisable ()
+	{
+		environment.DisableSpawn();
+	}
 }
