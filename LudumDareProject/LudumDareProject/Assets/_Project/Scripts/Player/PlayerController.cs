@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _maxSpeed = 1;
     [SerializeField] private float _moveForce = 20;
     [SerializeField] private float _jumpForce = 440f;
-    [SerializeField] private float _attackRange = 1;
 	
     private Rigidbody2D _RB;
 
@@ -30,7 +29,7 @@ public class PlayerController : MonoBehaviour
         _RB = this.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    public void AUpdate()
     {
 		DetectInput();
 

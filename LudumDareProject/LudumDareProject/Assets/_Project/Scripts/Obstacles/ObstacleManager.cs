@@ -28,7 +28,7 @@ public class ObstacleManager : MonoBehaviour
         SpawnRandomObstacle();
     }
 
-    void Update()
+    public void AUpdate()
     {
         for (int i = 0; i < listObstaclesInstances.Count; i ++)
         {
