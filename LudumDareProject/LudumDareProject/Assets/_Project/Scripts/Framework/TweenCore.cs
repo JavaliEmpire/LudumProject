@@ -62,6 +62,8 @@ public class TweenCore : MonoBehaviour
 	
 	void FixedUpdate () 
 	{
+		Ease __ease = (Ease)Enum.GetValues(typeof(Ease)).GetValue(0);
+
 		if (_nodulesList != null)
 		{
 			List<ATweenNodule> __updatedNodulesList = new List<ATweenNodule>();
