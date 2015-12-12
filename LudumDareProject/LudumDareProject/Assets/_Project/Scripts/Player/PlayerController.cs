@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool _grounded = true;
     [SerializeField] private bool _obstacleGrounded = false;
+    [SerializeField] private bool _beingPushed = false;
     private bool _attacking = false;
 
     #endregion
@@ -55,9 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             StateMachine.ChangeState(StateMachine.StateType.MENU);
         }
-        Debug.Log("Speed: " + _RB.velocity);
-
-        if (!_grounded /*&& _obstacleGrounded*/)
+        if (_beingPushed/*&& _obstacleGrounded*/)
         {
             return;
         }
@@ -77,9 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (_grounded == false && _obstacleGrounded == false) return;
-
-        //_grounded = false;
+        if (_grounded == false) return;
 
         _RB.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
     }
@@ -87,7 +84,6 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         if (_attacking == true) return;
-
         _attacking = true;
 
         weapon.SetActive(_attacking);
@@ -107,10 +103,6 @@ public class PlayerController : MonoBehaviour
         {
             _grounded = true;
         }
-        if (p_other.gameObject.CompareTag("ObstacleGround"))
-        {
-            _obstacleGrounded = true;
-        }
     }
 
     void OnCollisionStay2D(Collision2D p_other)
@@ -124,10 +116,7 @@ public class PlayerController : MonoBehaviour
         {
             _grounded = false;
         }
-        if (p_other.gameObject.CompareTag("ObstacleGround"))
-        {
-            _obstacleGrounded = false;
-        }
+
     }
 
 }
