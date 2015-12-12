@@ -19,6 +19,12 @@ public class ButtonEffects : MonoBehaviour
 
 	#endregion
 
+	#region Public Data
+
+	public Action onButtonClick;
+
+	#endregion
+
 
 	void Awake () 
 	{
@@ -59,5 +65,10 @@ public class ButtonEffects : MonoBehaviour
 			__imageColor.a = p_value;
 			_image.color = __imageColor;
 		});
+	}
+
+	public void OnPointerClick()
+	{
+		if (onButtonClick != null) onButtonClick();
 	}
 }
