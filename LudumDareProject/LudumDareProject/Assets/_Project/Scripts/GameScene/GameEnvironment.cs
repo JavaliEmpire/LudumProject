@@ -18,6 +18,11 @@ public class GameEnvironment : MonoBehaviour
 
 	}
 
+    public void AEnable()
+    {
+
+    }
+
 	public void AUpdate()
 	{
 		_player.AUpdate();
@@ -25,5 +30,8 @@ public class GameEnvironment : MonoBehaviour
 		_obstacleManager.AUpdate();
 	}
 
+    public void ADisable()
+    {
 
+    }
 }

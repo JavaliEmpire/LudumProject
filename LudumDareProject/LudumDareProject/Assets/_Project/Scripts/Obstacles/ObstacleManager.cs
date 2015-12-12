@@ -21,10 +21,12 @@ public class ObstacleManager : MonoBehaviour
 
     void Awake()
     {
-        LoadData();
-
         listObstaclesInstances = new List<GameObject>();
-		
+    }
+
+    void Enable()
+    {
+        LoadData();
         SpawnRandomObstacle();
     }
 
@@ -59,6 +61,8 @@ public class ObstacleManager : MonoBehaviour
         __newObstacle = Instantiate(__newObstacle, _spawnPosition, Quaternion.identity) as GameObject;
         __newObstacle.transform.parent = this.transform;
         listObstaclesInstances.Add(__newObstacle);
+
+        if (this.gameObject.activeSelf == false) return;
         ATimer.WaitSeconds(_spawnRate, delegate
         {
             SpawnRandomObstacle();

@@ -16,4 +16,9 @@ public class GameState : MachineState
 		environment.AUpdate();
 	}
 
+    public override void ADisable()
+    {
+        environment.ADisable();
+    }
+
 }
