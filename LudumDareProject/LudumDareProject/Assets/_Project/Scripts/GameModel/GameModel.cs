@@ -53,7 +53,7 @@ public class GameModel : MonoBehaviour
         {
             DataType __dataType = (DataType)Enum.GetValues(typeof(DataType)).GetValue(i);
 
-            _dictData.Add(__dataType.ToString(), 0);
+            _dictData.Add(__dataType.ToString(), 1);
         }
 
         LoadData();

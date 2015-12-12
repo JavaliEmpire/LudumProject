@@ -15,4 +15,9 @@ public class MachineState : MonoBehaviour
 	{
 
 	}
+
+    public virtual void ADisable()
+    {
+
+    }
 }

@@ -50,6 +50,7 @@ public class StateMachine : MonoBehaviour
 		}
 
 		ChangeState(_currentState);
+        
 	}
 
 	void Update()

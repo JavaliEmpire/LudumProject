@@ -42,6 +42,7 @@ public class Enemy : Obstacles
 
         if (_currentLife <= 0)
         {
+            GameModel.instance._dictData[GameModel.DataType.GOLD.ToString()] += GameModel.instance._dictData[GameModel.DataType.GAME_LEVEL.ToString()];
             Destroy(this.gameObject);
         }
     }

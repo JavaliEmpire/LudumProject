@@ -18,10 +18,20 @@ public class GameEnvironment : MonoBehaviour
 
 	}
 
+    public void AEnable()
+    {
+
+    }
+
 	public void AUpdate()
 	{
 		_player.AUpdate();
 
 		_obstacleManager.AUpdate();
 	}
+
+    public void ADisable()
+    {
+
+    }
 }
