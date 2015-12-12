@@ -15,12 +15,7 @@ public class GameEnvironment : MonoBehaviour
 
 	public void Initialize()
 	{
-
-	}
-
-    public void AEnable()
-    {
-
+        _obstacleManager.AEnable();
     }
 
 	public void AUpdate()

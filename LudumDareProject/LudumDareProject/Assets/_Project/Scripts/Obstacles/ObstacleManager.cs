@@ -24,7 +24,7 @@ public class ObstacleManager : MonoBehaviour
         listObstaclesInstances = new List<GameObject>();
     }
 
-    void Enable()
+    public void AEnable()
     {
         LoadData();
         SpawnRandomObstacle();
@@ -47,7 +47,7 @@ public class ObstacleManager : MonoBehaviour
     private void SpawnRandomObstacle()
     {
         int __randomDifficultyLevel = UnityEngine.Random.Range(1, _currentLevel);
-        int __randomObstacleIndex = UnityEngine.Random.Range(1, _dictObstacles[__randomDifficultyLevel].Count);       
+        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);       
         GameObject __newObstacle = _dictObstacles[__randomDifficultyLevel][__randomObstacleIndex];
         switch (__newObstacle.GetComponent<Obstacles>().obstacleType)
         {
@@ -59,6 +59,7 @@ public class ObstacleManager : MonoBehaviour
                 break;
         }  
         __newObstacle = Instantiate(__newObstacle, _spawnPosition, Quaternion.identity) as GameObject;
+        __newObstacle.name = __newObstacle.GetComponent<Obstacles>().obstacleType.ToString();
         __newObstacle.transform.parent = this.transform;
         listObstaclesInstances.Add(__newObstacle);
 
@@ -100,5 +101,6 @@ public class ObstacleManager : MonoBehaviour
             }
             _dictObstacles.Add(i, __listObstaclesOfLevel);
         }
+
     }
 }

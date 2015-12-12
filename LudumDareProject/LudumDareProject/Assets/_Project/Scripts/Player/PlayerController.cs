@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
 	
     private Rigidbody2D _RB;
 
-    private bool _grounded = true;
+    [SerializeField] private bool _grounded = true;
+    [SerializeField] private bool _obstacleGrounded = false;
     private bool _attacking = false;
-    private bool _canMove = true;
 
     #endregion
 
@@ -55,8 +55,14 @@ public class PlayerController : MonoBehaviour
         {
             StateMachine.ChangeState(StateMachine.StateType.MENU);
         }
-        if (_canMove == false) return;
-        if (transform.position.x <= _xMainPosition)
+        Debug.Log("Speed: " + _RB.velocity);
+
+        if (!_grounded /*&& _obstacleGrounded*/)
+        {
+            return;
+        }
+
+        if (transform.position.x < _xMainPosition)
         {
             if (_RB.velocity.x < _maxSpeed)
             {
@@ -67,15 +73,13 @@ public class PlayerController : MonoBehaviour
                 _RB.velocity = new Vector2(Mathf.Sign(_RB.velocity.x) * _maxSpeed, _RB.velocity.y);
             }
         }
-
-
     }
 
     private void Jump()
     {
-        if (_grounded == false) return;
+        if (_grounded == false && _obstacleGrounded == false) return;
 
-        _grounded = false;
+        //_grounded = false;
 
         _RB.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
     }
@@ -105,15 +109,24 @@ public class PlayerController : MonoBehaviour
         }
         if (p_other.gameObject.CompareTag("ObstacleGround"))
         {
-            _canMove = false;
+            _obstacleGrounded = true;
         }
+    }
+
+    void OnCollisionStay2D(Collision2D p_other)
+    {
+
     }
 
     void OnCollisionExit2D(Collision2D p_other)
     {
+        if (p_other.gameObject.CompareTag("Ground"))
+        {
+            _grounded = false;
+        }
         if (p_other.gameObject.CompareTag("ObstacleGround"))
         {
-            _canMove = true;
+            _obstacleGrounded = false;
         }
     }
 

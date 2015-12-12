@@ -17,13 +17,10 @@ public class Obstacles : MonoBehaviour
     #region Protected Data
 
     [SerializeField] protected int _difficultyLevel;
-	
     [SerializeField] protected ObstacleType _obstacleType;
-
     [SerializeField] protected float _speed;
 
-    protected Renderer _renderer;
-    
+    protected float _moveForce;
     protected Rigidbody2D _RB;
 
     #endregion
