@@ -45,8 +45,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MachineState.cs" />
-     <Compile Include="Assets\StateMachine.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TimerCore.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TweenCore.cs" />
      <Compile Include="Assets\_Project\Scripts\GameModel\GameModel.cs" />
@@ -56,6 +54,10 @@
      <Compile Include="Assets\_Project\Scripts\Obstacles\Obstacles.cs" />
      <Compile Include="Assets\_Project\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\_Project\Scripts\Player\Weapon.cs" />
+     <Compile Include="Assets\_Project\Scripts\StateMachine\Controllers\MachineState.cs" />
+     <Compile Include="Assets\_Project\Scripts\StateMachine\Controllers\StateMachine.cs" />
+     <Compile Include="Assets\_Project\Scripts\StateMachine\States\GameState.cs" />
+     <Compile Include="Assets\_Project\Scripts\StateMachine\States\MenuState.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity 5.2.1f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

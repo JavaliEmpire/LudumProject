@@ -59,7 +59,7 @@ public class TimerCore : MonoBehaviour
 	}
 }
 
-public class ATimerNodule : MonoBehaviour
+public class ATimerNodule
 {
 	#region Private Data
 
