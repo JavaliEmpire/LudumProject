@@ -45,10 +45,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameEnvironment.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TimerCore.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TweenCore.cs" />
      <Compile Include="Assets\_Project\Scripts\GameModel\GameModel.cs" />
+     <Compile Include="Assets\_Project\Scripts\GameScene\GameEnvironment.cs" />
      <Compile Include="Assets\_Project\Scripts\Obstacles\Enemy.cs" />
      <Compile Include="Assets\_Project\Scripts\Obstacles\Obstacle.cs" />
      <Compile Include="Assets\_Project\Scripts\Obstacles\ObstacleManager.cs" />
