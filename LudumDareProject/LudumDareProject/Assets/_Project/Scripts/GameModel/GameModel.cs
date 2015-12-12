@@ -45,7 +45,7 @@ public class GameModel : MonoBehaviour
 
 	#endregion
 
-    void Start()
+    void Awake()
     {
         _dictData = new Dictionary<string, int>();
 

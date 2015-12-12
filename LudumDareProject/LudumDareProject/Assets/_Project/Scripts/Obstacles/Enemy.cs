@@ -9,17 +9,14 @@ public class Enemy : Obstacles
 
     private int _currentLife;
     
-    private float _moveForce = 500f;
 
 	#endregion
 
     void Awake ()
     {
         _currentLife = _maxLife;
-
+        _moveForce = 500f;
         _RB = this.GetComponent<Rigidbody2D>();
-
-        _renderer = this.GetComponent<Renderer>();
     }
 
     public override void AUpdate()

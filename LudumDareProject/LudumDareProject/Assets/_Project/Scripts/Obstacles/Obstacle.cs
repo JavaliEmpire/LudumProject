@@ -3,17 +3,15 @@ using System.Collections;
 
 public class Obstacle : Obstacles
 {
-	#region Private Data
 
-    private float _moveForce = 500f;
+    #region Private Data
 
-	#endregion
+    #endregion
 
     void Awake()
     {
         _RB = this.GetComponent<Rigidbody2D>();
-
-        _renderer = this.GetComponent<Renderer>();
+        _moveForce = 500f;
     }
 
     public override void AUpdate()
