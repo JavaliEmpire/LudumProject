@@ -45,17 +45,20 @@ public class ObstacleManager : MonoBehaviour
     private void SpawnRandomObstacle()
     {
         int __randomDifficultyLevel = UnityEngine.Random.Range(0, _currentLevel);
-
-        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);
-
+        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);       
         GameObject __newObstacle = _dictObstacles[__randomDifficultyLevel][__randomObstacleIndex];
-
+        switch (__newObstacle.GetComponent<Obstacles>().obstacleType)
+        {
+            case Obstacles.ObstacleType.ENEMY:
+                _spawnPosition.y = 2f;
+                break;
+            case Obstacles.ObstacleType.OBSTACLE:
+                _spawnPosition.y = UnityEngine.Random.Range(-1f, 1f);
+                break;
+        }  
         __newObstacle = Instantiate(__newObstacle, _spawnPosition, Quaternion.identity) as GameObject;
-
         __newObstacle.transform.parent = this.transform;
-	
         listObstaclesInstances.Add(__newObstacle);
-
         ATimer.WaitSeconds(_spawnRate, delegate
         {
             SpawnRandomObstacle();

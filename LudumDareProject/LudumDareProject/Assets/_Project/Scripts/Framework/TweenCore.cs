@@ -198,127 +198,105 @@ public class ATweenNodule : MonoBehaviour
 		{
 		case Ease.LINEAR:
 			return p_start + p_between * p_currentTime / p_duration;
-		break;
 		
 		case Ease.QUAD_IN:
 			p_currentTime /= p_duration;
 			return p_between * p_currentTime * p_currentTime + p_start;
-		break;
 
 		case Ease.QUAD_OUT:
 			p_currentTime /= p_duration;
 			return -p_between * p_currentTime * (p_currentTime - 2) + p_start;
-		break;
 
 		case Ease.QUAD_IN_OUT:
 			p_currentTime /= p_duration / 2;
 			if (p_currentTime < 1) return p_between / 2 * p_currentTime * p_currentTime + p_start;
 			p_currentTime--;
 			return -p_between/2 * (p_currentTime * (p_currentTime - 2) - 1) + p_start;
-		break;
 
 		case Ease.CUBIC_IN:
 			p_currentTime /= p_duration;
 			return p_between * p_currentTime * p_currentTime * p_currentTime + p_start;
-		break;
 
 		case Ease.CUBIC_OUT:
 			p_currentTime /= p_duration;
 			p_currentTime--;
 			return p_between * (p_currentTime * p_currentTime * p_currentTime + 1) + p_start;
-		break;
 
 		case Ease.CUBIC_IN_OUT:
 			p_currentTime /= p_duration / 2;
 			if (p_currentTime < 1) return p_between / 2 * p_currentTime * p_currentTime * p_currentTime + p_start;
 			p_currentTime -= 2;
 			return p_between / 2 * (p_currentTime * p_currentTime * p_currentTime + 2) + p_start;
-		break;
 
 		case Ease.QUART_IN:
 			p_currentTime /= p_duration;
 			return p_between * p_currentTime * p_currentTime * p_currentTime * p_currentTime + p_start;
-		break;
 
 		case Ease.QUART_OUT:
 			p_currentTime /= p_duration;
 			p_currentTime--;
 			return -p_between * (p_currentTime * p_currentTime * p_currentTime * p_currentTime - 1) + p_start;
-		break;
 
 		case Ease.QUART_IN_OUT:
 			p_currentTime /= p_duration / 2;
 			if (p_currentTime < 1) return p_between / 2 * p_currentTime * p_currentTime * p_currentTime * p_currentTime + p_start;
 			p_currentTime -= 2;
 			return -p_between / 2 * (p_currentTime * p_currentTime * p_currentTime * p_currentTime - 2) + p_start;
-		break;
 
 		case Ease.QUINT_IN:
 			p_currentTime /= p_duration;
 			return p_between * p_currentTime * p_currentTime * p_currentTime * p_currentTime * p_currentTime + p_start;
-		break;
+	
 
 		case Ease.QUINT_OUT:
 			p_currentTime /= p_duration;
 			p_currentTime--;
 			return p_between * (p_currentTime * p_currentTime * p_currentTime * p_currentTime * p_currentTime + 1) + p_start;
-		break;
 
 		case Ease.QUINT_IN_OUT:
 			p_currentTime /= p_duration / 2;
 			if (p_currentTime < 1) return p_between / 2 * p_currentTime * p_currentTime * p_currentTime * p_currentTime * p_currentTime + p_start;
 			p_currentTime -= 2;
 			return p_between / 2 * (p_currentTime * p_currentTime * p_currentTime * p_currentTime * p_currentTime + 2) + p_start;
-		break;
 
 		case Ease.SIN_IN:
 			return -p_between * Mathf.Cos(p_currentTime / p_duration * ((float)Mathf.PI / 2f)) + p_currentTime + p_start;
-		break;
 
 		case Ease.SIN_OUT:
 			return p_between * Mathf.Sin(p_currentTime / p_duration * ((float)Math.PI / 2f)) + p_start;
-		break;
 
 		case Ease.SIN_IN_OUT:
 			return -p_between / 2 * (Mathf.Cos((float)Math.PI * p_currentTime / p_duration) - 1f) + p_start;
-		break;
 
 		case Ease.EXP_IN:
 			return p_between * Mathf.Pow(2, 10 * (p_currentTime / p_duration - 1)) + p_start;
-		break;
 
 		case Ease.EXP_OUT:
 			return p_between * (-Mathf.Pow(2, -10 * p_currentTime / p_duration) + 1) + p_start;
-		break;
 
 		case Ease.EXP_INT_OUT:
 			p_currentTime /= p_duration / 2;
 			if (p_currentTime < 1) return p_between / 2 * Mathf.Pow(2, 10 * (p_currentTime - 1)) + p_start;
 			p_currentTime--;
 			return p_between / 2 * (-Mathf.Pow(2, -10 * p_currentTime) + 2) + p_start;
-		break;
 
 		case Ease.CIRC_IN:
 			p_currentTime /= p_duration;
 			return -p_between * (Mathf.Sqrt(1 - p_currentTime * p_currentTime) - 1) + p_start;
-		break;
 
 		case Ease.CIRC_OUT:
 			p_currentTime /= p_duration;
 			p_currentTime--;
 			return p_between * Mathf.Sqrt(1 - p_currentTime * p_currentTime) + p_start;
-		break;
 
 		case Ease.CIRC_IN_OUT:
 			p_currentTime /= p_duration / 2;
 			if (p_currentTime < 1) return -p_between / 2 * (Mathf.Sqrt(1 - p_currentTime * p_currentTime) - 1) + p_start;
 			p_currentTime -= 2;
 			return p_between / 2 * (Mathf.Sqrt(1 - p_currentTime * p_currentTime) + 1) + p_start;
-		break;
 
 		default:
 			return 0f;
-		break;
 		}
 	}
 }
