@@ -45,6 +45,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MachineState.cs" />
+     <Compile Include="Assets\StateMachine.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TimerCore.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TweenCore.cs" />
      <Compile Include="Assets\_Project\Scripts\GameModel\GameModel.cs" />
