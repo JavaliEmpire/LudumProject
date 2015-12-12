@@ -24,4 +24,6 @@ public class GameEnvironment : MonoBehaviour
 
 		_obstacleManager.AUpdate();
 	}
+
+
 }

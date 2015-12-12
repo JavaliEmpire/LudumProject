@@ -11,7 +11,7 @@ public class ObstacleManager : MonoBehaviour
 
     private List<GameObject> listObstaclesInstances;
 
-    private int _currentLevel = 0;
+    private int _currentLevel = 1;
 
     [SerializeField] private float _spawnRate = 10f;
 
@@ -44,8 +44,8 @@ public class ObstacleManager : MonoBehaviour
 
     private void SpawnRandomObstacle()
     {
-        int __randomDifficultyLevel = UnityEngine.Random.Range(0, _currentLevel);
-        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);       
+        int __randomDifficultyLevel = UnityEngine.Random.Range(1, _currentLevel);
+        int __randomObstacleIndex = UnityEngine.Random.Range(1, _dictObstacles[__randomDifficultyLevel].Count);       
         GameObject __newObstacle = _dictObstacles[__randomDifficultyLevel][__randomObstacleIndex];
         switch (__newObstacle.GetComponent<Obstacles>().obstacleType)
         {
@@ -83,7 +83,7 @@ public class ObstacleManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < __levelMax; i ++)
+        for (int i = 1; i <= __levelMax; i ++)
         {
             List<GameObject> __listObstaclesOfLevel = new List<GameObject>();
 
