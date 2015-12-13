@@ -8,9 +8,13 @@ public class PlayerController : MonoBehaviour
 
     public GameObject weapon;
 
+	public Action<Action> onOutOfScreen;
+
     #endregion
 
     #region Private Data
+
+	private Vector3 _initialPosition = new Vector3(-4f, -.9f, 0f);
 
     [SerializeField] private float _xMainPosition = 0;
     [SerializeField] private float _maxSpeed = 1;
@@ -50,16 +54,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+	public void ResetPosition()
+	{
+		transform.position = _initialPosition;
+	}
+
     private void CheckPosition()
     {
         if (Camera.main.WorldToViewportPoint(transform.position).x < 0)
         {
-            StateMachine.ChangeState(StateMachine.StateType.MENU);
+			if (onOutOfScreen != null) onOutOfScreen(ResetPosition);
         }
-        if (_beingPushed)
-        {
-            return;
-        }
+        if (_beingPushed) return;
 
         if (transform.position.x < _xMainPosition)
         {
@@ -77,8 +83,11 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         if (_grounded == false && _obstacleGrounded == false) return;
+
         _grounded = false;
+
         _obstacleGrounded = false;
+
         _RB.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
     }
 
@@ -95,7 +104,6 @@ public class PlayerController : MonoBehaviour
 
             weapon.SetActive(_attacking);
         });
-
     }
 
     void OnCollisionEnter2D(Collision2D p_other)
@@ -109,12 +117,7 @@ public class PlayerController : MonoBehaviour
             _obstacleGrounded = true;
         }
     }
-
-    void OnCollisionStay2D(Collision2D p_other)
-    {
-
-    }
-
+	
     void OnCollisionExit2D(Collision2D p_other)
     {
         if (p_other.gameObject.CompareTag("Ground"))
@@ -125,7 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             _obstacleGrounded = false;
         }
-
     }
+	
 
 }

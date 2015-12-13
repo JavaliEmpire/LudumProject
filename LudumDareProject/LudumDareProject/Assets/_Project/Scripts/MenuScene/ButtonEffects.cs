@@ -23,7 +23,6 @@ public class ButtonEffects : MonoBehaviour
 
 	public Action onButtonClick;
 
-
 	#endregion
 
 
@@ -38,7 +37,7 @@ public class ButtonEffects : MonoBehaviour
 	public void OnPointerEnter()
 	{
 		try { _animationTween.Stop(); }
-		catch (Exception p_e){}
+		catch {}
 
 		Color __imageColor = _image.color;
 
@@ -55,7 +54,7 @@ public class ButtonEffects : MonoBehaviour
 	public void OnPointerExit()
 	{
 		try { _animationTween.Stop(); }
-		catch (Exception p_e){}
+		catch {}
 		
 		Color __imageColor = _image.color;
 		

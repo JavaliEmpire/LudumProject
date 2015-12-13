@@ -4,6 +4,7 @@ using System.Collections;
 public class GameState : MachineState 
 {
 
+
 	public GameEnvironment environment;
 
 	public override void AInitialize ()
@@ -13,7 +14,7 @@ public class GameState : MachineState
 
 	public override void AEnable ()
 	{
-		environment.EnableSpawn();
+		environment.ChangeState(GameEnvironment.GameStateType.ON_HOLD, true);
 	}
 
 	public override void AUpdate ()
@@ -23,6 +24,5 @@ public class GameState : MachineState
 
 	public override void ADisable ()
 	{
-		environment.DisableSpawn();
 	}
 }

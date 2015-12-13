@@ -10,7 +10,6 @@ public class StateMachine : MonoBehaviour
 	{
 		MENU,
 		GAME,
-		STORE,
 		CREDITS,
 	}
 

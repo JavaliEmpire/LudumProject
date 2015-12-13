@@ -45,6 +45,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FadeCanvas.cs" />
+     <Compile Include="Assets\GameCanvas.cs" />
      <Compile Include="Assets\_Project\Scripts\Background\OffsetScroller.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TimerCore.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TweenCore.cs" />

@@ -20,17 +20,26 @@ public class MenuCanvas : MonoBehaviour
 	{
 		playButton.onButtonClick += delegate 
 		{
-			StateMachine.ChangeState(StateMachine.StateType.GAME);
+			FadeCanvas.instance.FadeTo(delegate 
+			{
+				StateMachine.ChangeState(StateMachine.StateType.GAME);
+			}, null);
 		};
 
 		exitButton.onButtonClick += delegate 
 		{
-			Application.Quit();
+			FadeCanvas.instance.FadeTo(delegate 
+			{
+				Application.Quit();
+			}, null);
 		};
 
 		creditsButton.onButtonClick += delegate
 		{
-			StateMachine.ChangeState(StateMachine.StateType.CREDITS);
+			FadeCanvas.instance.FadeTo(delegate 
+			{
+				StateMachine.ChangeState(StateMachine.StateType.CREDITS);
+			}, null);
 		};
 	}
 

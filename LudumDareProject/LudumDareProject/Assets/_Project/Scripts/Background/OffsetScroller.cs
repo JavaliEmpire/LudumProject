@@ -8,6 +8,8 @@ public class OffsetScroller : MonoBehaviour
     private Vector2 savedOffset;
     private Renderer _renderer;
 
+	public bool active;
+
     void Start()
     {
         _renderer = this.GetComponent<Renderer>();
@@ -16,9 +18,12 @@ public class OffsetScroller : MonoBehaviour
 
     void Update()
     {
-        float x = Mathf.Repeat(Time.time * scrollSpeed, 1);
-        Vector2 offset = new Vector2(x, savedOffset.y);
-        _renderer.sharedMaterial.SetTextureOffset("_MainTex", offset);
+		if (active == true)
+		{
+	        float __x = Mathf.Repeat(Time.time * scrollSpeed, 1);
+	        Vector2 __offset = new Vector2(__x, savedOffset.y);
+	        _renderer.sharedMaterial.SetTextureOffset("_MainTex", __offset);
+		}
     }
 
     void OnDisable()
