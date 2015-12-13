@@ -18,7 +18,7 @@ public class CoinAction : MonoBehaviour
 
 	void CoinAnimationNormal()
 	{
-		_animationTween = ATween.FloatTo(1f, .1f, .5f, Ease.LINEAR, delegate (float p_value)
+		_animationTween = ATween.FloatTo(1f, .05f, .5f, Ease.LINEAR, delegate (float p_value)
 		{
 			Vector2 __scale = transform.localScale;
 
@@ -31,7 +31,7 @@ public class CoinAction : MonoBehaviour
 
 	void CoinAnimationReverse()
 	{
-		_animationTween = ATween.FloatTo(.1f, 1f, .5f, Ease.LINEAR, delegate (float p_value)
+		_animationTween = ATween.FloatTo(.05f, 1f, .5f, Ease.LINEAR, delegate (float p_value)
 		{
 			Vector2 __scale = transform.localScale;
 
