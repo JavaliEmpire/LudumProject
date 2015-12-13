@@ -119,4 +119,18 @@ public class PlayerController : MonoBehaviour
             _obstacleGrounded = false;
         }
     }
+	
+    void OnCollisionExit2D(Collision2D p_other)
+    {
+        if (p_other.gameObject.CompareTag("Ground"))
+        {
+            _grounded = false;
+        }
+        if (p_other.gameObject.CompareTag("ObstacleGround"))
+        {
+            _obstacleGrounded = false;
+        }
+    }
+	
+
 }
