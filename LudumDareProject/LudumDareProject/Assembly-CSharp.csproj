@@ -45,12 +45,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FadeCanvas.cs" />
-     <Compile Include="Assets\GameCanvas.cs" />
      <Compile Include="Assets\_Project\Scripts\Background\OffsetScroller.cs" />
+     <Compile Include="Assets\_Project\Scripts\Framework\FadeCanvas.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TimerCore.cs" />
      <Compile Include="Assets\_Project\Scripts\Framework\TweenCore.cs" />
      <Compile Include="Assets\_Project\Scripts\GameModel\GameModel.cs" />
+     <Compile Include="Assets\_Project\Scripts\GameScene\GameCanvas.cs" />
      <Compile Include="Assets\_Project\Scripts\GameScene\GameEnvironment.cs" />
      <Compile Include="Assets\_Project\Scripts\MenuScene\ButtonEffects.cs" />
      <Compile Include="Assets\_Project\Scripts\MenuScene\CoinAction.cs" />
