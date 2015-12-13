@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool _grounded = true;
     [SerializeField] private bool _obstacleGrounded = false;
-    [SerializeField] private bool _beingPushed = false;
+
     private bool _attacking = false;
 
     #endregion
@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
         {
 			if (onOutOfScreen != null) onOutOfScreen(ResetPosition);
         }
-        if (_beingPushed) return;
+        
+       // if (_grounded == false && _obstacleGrounded == false) return;
 
         if (transform.position.x < _xMainPosition)
         {
@@ -83,10 +84,6 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         if (_grounded == false && _obstacleGrounded == false) return;
-
-        _grounded = false;
-
-        _obstacleGrounded = false;
 
         _RB.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
     }
