@@ -26,6 +26,8 @@ public class GameEnvironment : MonoBehaviour
 
 	[SerializeField] private GameCanvas _gameCanvas;
 
+    [SerializeField] private Background _background;
+
 	#endregion
 
 	public void Initialize()

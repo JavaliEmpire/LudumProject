@@ -3,16 +3,17 @@ using System.Collections;
 
 public class Enemy : Obstacles
 {
-	#region Private Data
+    #region Private Data
 
-	[SerializeField] private int _maxLife;
+    [SerializeField]
+    private int _maxLife;
 
     private int _currentLife;
-    
 
-	#endregion
 
-    void Awake ()
+    #endregion
+
+    void Awake()
     {
         _currentLife = _maxLife;
         _moveForce = 500f;
@@ -52,7 +53,7 @@ public class Enemy : Obstacles
         }
     }
 
-	protected override void OutOfScreen()
+    protected override void OutOfScreen()
     {
         if (Camera.main.WorldToViewportPoint(transform.position).x < 0)
         {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OffsetScroller : MonoBehaviour
+public class OffsetScroller : Background
 {
 
     public float scrollSpeed;
@@ -20,7 +20,7 @@ public class OffsetScroller : MonoBehaviour
     {
 		if (active == true)
 		{
-	        float __x = Mathf.Repeat(Time.time * scrollSpeed, 1);
+	        float __x = Mathf.Repeat(Time.time * scrollSpeed * scrollSpeedMultiplier, 1);
 	        Vector2 __offset = new Vector2(__x, savedOffset.y);
 	        _renderer.sharedMaterial.SetTextureOffset("_MainTex", __offset);
 		}
