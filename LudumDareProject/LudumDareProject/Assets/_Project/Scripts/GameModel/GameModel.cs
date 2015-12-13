@@ -47,18 +47,20 @@ public class GameModel : MonoBehaviour
 
 	#endregion
 
-    void Awake()
+	void Awake()
+	{
+		dictData = new Dictionary<string, int>();
+		
+		for (int i = 0; i < Enum.GetNames(typeof(DataType)).Length; i++)
+		{
+			DataType __dataType = (DataType)Enum.GetValues(typeof(DataType)).GetValue(i);
+			
+			dictData.Add(__dataType.ToString(), 1);
+		}
+	}
+
+    void Start()
     {
-        dictData = new Dictionary<string, int>();
-
-        for (int i = 0; i < Enum.GetNames(typeof(DataType)).Length; i++)
-        {
-            DataType __dataType = (DataType)Enum.GetValues(typeof(DataType)).GetValue(i);
-
-            dictData.Add(__dataType.ToString(), 1);
-        }
-
-		Debug.Log(dictData.Keys);
         LoadData();
     }
 
@@ -89,20 +91,23 @@ public class GameModel : MonoBehaviour
 
     private void LoadData()
     {
+		Dictionary<string, int> __loadedData = new Dictionary<string, int>();
+
         foreach (KeyValuePair<string, int> __object in dictData)
         {
-			Debug.Log(__object.Key);
+			string __key = __object.Key;
 
-            if (PlayerPrefs.HasKey(__object.Key))
+            if (PlayerPrefs.HasKey(__key))
             {
-				Debug.Log("has key");
-
 				int __value = PlayerPrefs.GetInt(__object.Key);
 
-				Debug.Log("Derp");
-
-				dictData[__object.Key] = __value;
+				__loadedData.Add(__key,__value);
             }
         }
+
+		if (__loadedData.Count == dictData.Count)
+		{
+			dictData = __loadedData;
+		}
     }
 }

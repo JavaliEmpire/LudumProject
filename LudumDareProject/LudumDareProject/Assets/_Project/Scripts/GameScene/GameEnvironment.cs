@@ -84,6 +84,12 @@ public class GameEnvironment : MonoBehaviour
 	{
 		_currentGameState = p_state;
 
+		if (_currentGameState == GameStateType.ON_HOLD)
+		{
+			GameModel.instance.refreshStatsAction();
+			GameModel.instance.SaveData();
+		}
+
 		if (p_applyTransition == false)
 			return;
 
@@ -91,7 +97,7 @@ public class GameEnvironment : MonoBehaviour
 		{
 		case GameStateType.ON_HOLD:
 			_gameCanvas.ShowOnHoldGroup(_gameCanvas.ListenButtonEvents);
-			GameModel.instance.SaveData();
+
 			break;
 
 		}

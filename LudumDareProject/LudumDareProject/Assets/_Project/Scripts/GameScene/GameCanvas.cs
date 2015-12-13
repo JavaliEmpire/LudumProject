@@ -25,6 +25,8 @@ public class GameCanvas : MonoBehaviour
 
 	public Image expBar;
 
+	public Text stageText;
+
 	#endregion
 
 	#region Events
@@ -63,6 +65,8 @@ public class GameCanvas : MonoBehaviour
 		int __characterCurrentExperience = GameModel.instance.dictData[GameModel.DataType.CHARACTER_EXPERIENCE.ToString()];
 
 		int __characterNextLevelExperiente = Mathf.CeilToInt(Mathf.Pow((float)__characterLevel, 2f) * 10);
+
+		stageText.text = "" + __characterLevel;
 
 		goldText.text = "x " + __gold;
 
