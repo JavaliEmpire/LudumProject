@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             StateMachine.ChangeState(StateMachine.StateType.MENU);
         }
-        if (_beingPushed/*&& _obstacleGrounded*/)
+        if (_beingPushed)
         {
             return;
         }
@@ -76,8 +76,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (_grounded == false) return;
-
+        if (_grounded == false && _obstacleGrounded == false) return;
+        _grounded = false;
+        _obstacleGrounded = false;
         _RB.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
     }
 
@@ -103,6 +104,10 @@ public class PlayerController : MonoBehaviour
         {
             _grounded = true;
         }
+        if (p_other.gameObject.CompareTag("ObstacleGround"))
+        {
+            _obstacleGrounded = true;
+        }
     }
 
     void OnCollisionStay2D(Collision2D p_other)
@@ -115,6 +120,10 @@ public class PlayerController : MonoBehaviour
         if (p_other.gameObject.CompareTag("Ground"))
         {
             _grounded = false;
+        }
+        if (p_other.gameObject.CompareTag("ObstacleGround"))
+        {
+            _obstacleGrounded = false;
         }
 
     }
