@@ -65,8 +65,6 @@ public class PlayerController : MonoBehaviour
         {
 			if (onOutOfScreen != null) onOutOfScreen(ResetPosition);
         }
-        
-       // if (_grounded == false && _obstacleGrounded == false) return;
 
         if (transform.position.x < _xMainPosition)
         {
@@ -98,34 +96,27 @@ public class PlayerController : MonoBehaviour
         ATimer.WaitSeconds(0.1f, delegate
         {
             _attacking = false;
-
             weapon.SetActive(_attacking);
         });
     }
 
-    void OnCollisionEnter2D(Collision2D p_other)
+    void OnCollisionStay2D(Collision2D p_other)
     {
         if (p_other.gameObject.CompareTag("Ground"))
         {
             _grounded = true;
         }
-        if (p_other.gameObject.CompareTag("ObstacleGround"))
-        {
-            _obstacleGrounded = true;
-        }
-    }
-	
-    void OnCollisionExit2D(Collision2D p_other)
-    {
-        if (p_other.gameObject.CompareTag("Ground"))
+        else
         {
             _grounded = false;
         }
         if (p_other.gameObject.CompareTag("ObstacleGround"))
         {
+            _obstacleGrounded = true;
+        }
+        else
+        {
             _obstacleGrounded = false;
         }
     }
-	
-
 }
