@@ -91,6 +91,7 @@ public class GameEnvironment : MonoBehaviour
 		{
 		case GameStateType.ON_HOLD:
 			_gameCanvas.ShowOnHoldGroup(_gameCanvas.ListenButtonEvents);
+			GameModel.instance.SaveData();
 			break;
 
 		}

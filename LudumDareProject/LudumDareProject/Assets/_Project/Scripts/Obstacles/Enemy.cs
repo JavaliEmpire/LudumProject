@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Enemy : Obstacles
@@ -40,7 +40,15 @@ public class Enemy : Obstacles
 
         if (_currentLife <= 0)
         {
-            GameModel.instance._dictData[GameModel.DataType.GOLD.ToString()] += GameModel.instance._dictData[GameModel.DataType.GAME_LEVEL.ToString()];
+			int __currentLevel = GameModel.instance.dictData[GameModel.DataType.CHARACTER_LEVEL.ToString()];
+
+			int __goldMultiplier = GameModel.instance.dictData[GameModel.DataType.GOLD_MULT.ToString()];
+
+			GameModel.instance.dictData[GameModel.DataType.GOLD.ToString()] += __currentLevel * __goldMultiplier;
+
+			GameModel.instance.AddExp(__currentLevel);
+
+			GameModel.instance.refreshStatsAction();
             Destroy(this.gameObject);
         }
     }

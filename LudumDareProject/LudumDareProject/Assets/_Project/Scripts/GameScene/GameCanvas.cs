@@ -19,6 +19,12 @@ public class GameCanvas : MonoBehaviour
 
 	public CanvasGroup statsGroup;
 
+	public Text goldText;
+
+	public Text expText;
+
+	public Image expBar;
+
 	#endregion
 
 	#region Events
@@ -31,7 +37,12 @@ public class GameCanvas : MonoBehaviour
 
 	public void Initialize()
 	{
+
+		RefreshStats();
+
 		ListenButtonEvents();
+		
+		GameModel.instance.refreshStatsAction += RefreshStats;
 	}
 
 	public void ListenButtonEvents()
@@ -41,6 +52,23 @@ public class GameCanvas : MonoBehaviour
 
 		goButton.onButtonClick += HandleGoButtonPress;
 		backButton.onButtonClick += HandleBackButtonPress;
+	}
+
+	public void RefreshStats()
+	{
+		int __gold = GameModel.instance.dictData[GameModel.DataType.GOLD.ToString()];
+
+		int __characterLevel = GameModel.instance.dictData[GameModel.DataType.CHARACTER_LEVEL.ToString()];
+
+		int __characterCurrentExperience = GameModel.instance.dictData[GameModel.DataType.CHARACTER_EXPERIENCE.ToString()];
+
+		int __characterNextLevelExperiente = Mathf.CeilToInt(Mathf.Pow((float)__characterLevel, 2f) * 10);
+
+		goldText.text = "x " + __gold;
+
+		expText.text = __characterCurrentExperience + " / " + __characterNextLevelExperiente;
+
+		expBar.fillAmount = (float)__characterCurrentExperience / (float)__characterNextLevelExperiente;
 	}
 
 	private void HandleGoButtonPress()

@@ -15,16 +15,14 @@ public class PlayerController : MonoBehaviour
     #region Private Data
 
 	private Vector3 _initialPosition = new Vector3(-4f, -.9f, 0f);
-
-    [SerializeField] private float _xMainPosition = 0;
+	
     [SerializeField] private float _maxSpeed = 1;
     [SerializeField] private float _moveForce = 20;
     [SerializeField] private float _jumpForce = 440f;
 	
     private Rigidbody2D _RB;
 
-    [SerializeField] private bool _grounded = true;
-    [SerializeField] private bool _obstacleGrounded = false;
+    private bool _grounded = true;
 
     private bool _attacking = false;
 
@@ -66,7 +64,11 @@ public class PlayerController : MonoBehaviour
 			if (onOutOfScreen != null) onOutOfScreen(ResetPosition);
         }
 
-        if (transform.position.x < _xMainPosition)
+		Vector3 __screenCenter = Vector3.one / 2;
+
+		__screenCenter = Camera.main.ViewportToWorldPoint(__screenCenter);
+
+		if (transform.position.x < __screenCenter.x)
         {
             if (_RB.velocity.x < _maxSpeed)
             {
@@ -81,7 +83,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (_grounded == false && _obstacleGrounded == false) return;
+        if (_grounded == false) return;
+
+		_grounded = false;
 
         _RB.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
     }
@@ -102,21 +106,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D p_other)
     {
-        if (p_other.gameObject.CompareTag("Ground"))
+		if (p_other.gameObject.CompareTag("Ground"))
         {
             _grounded = true;
-        }
-        else
-        {
-            _grounded = false;
-        }
-        if (p_other.gameObject.CompareTag("ObstacleGround"))
-        {
-            _obstacleGrounded = true;
-        }
-        else
-        {
-            _obstacleGrounded = false;
         }
     }
 	
@@ -124,11 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         if (p_other.gameObject.CompareTag("Ground"))
         {
-            _grounded = false;
-        }
-        if (p_other.gameObject.CompareTag("ObstacleGround"))
-        {
-            _obstacleGrounded = false;
+            	_grounded = false;
         }
     }
 	

@@ -116,7 +116,7 @@ public class TweenCore : MonoBehaviour
 	}
 }
 
-public class ATweenNodule : MonoBehaviour
+public class ATweenNodule
 {
 	#region Private Data
 
@@ -299,7 +299,7 @@ public class ATweenNodule : MonoBehaviour
 	}
 }
 
-public class ABezierCurve : MonoBehaviour
+public class ABezierCurve
 {
 	#region Private Data
 	

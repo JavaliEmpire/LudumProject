@@ -11,8 +11,6 @@ public class ButtonEffects : MonoBehaviour
 
 	private ATweenNodule _animationTween;
 
-	private EventTrigger _es;
-
 	private Image _image;
 
 	private float _initialAlpha;
@@ -29,7 +27,6 @@ public class ButtonEffects : MonoBehaviour
 	void Awake () 
 	{
 		_image = GetComponent<Image>();
-		_es = GetComponent<EventTrigger>();
 
 		_initialAlpha = _image.color.a;
 	}
