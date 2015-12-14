@@ -72,7 +72,8 @@ public class ObstacleManager : MonoBehaviour
                 _spawnPosition.y = 2f;
                 break;
             case Obstacles.ObstacleType.OBSTACLE:
-                _spawnPosition.y = UnityEngine.Random.Range(-1f, 1f);
+                // _spawnPosition.y = UnityEngine.Random.Range(-1f, 1f);
+                _spawnPosition.y = 0.74f;
                 break;
         }  
 
