@@ -61,21 +61,64 @@ public class ObstacleManager : MonoBehaviour
     private void SpawnNewObstacle()
     {
         int __randomDifficultyLevel = UnityEngine.Random.Range(1, _currentLevel);
+        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);
 
-        int __randomObstacleIndex = UnityEngine.Random.Range(0, _dictObstacles[__randomDifficultyLevel].Count);     
+        string __obstacleName;
 
         GameObject __newObstacle = _dictObstacles[__randomDifficultyLevel][__randomObstacleIndex];
+        __obstacleName = __newObstacle.name;
+        switch (__newObstacle.GetComponent<Obstacles>().obstacleType)
+        {
+            case Obstacles.ObstacleType.ENEMY:
+                _spawnPosition.y = 2f;    
+                break;
+            case Obstacles.ObstacleType.OBSTACLE:
+                _spawnPosition.y = -0.3f;
+                break;
+        }
+        _spawnPosition.z = 0f;
+        __newObstacle = Instantiate(__newObstacle, _spawnPosition, Quaternion.identity) as GameObject;
+        __newObstacle.name = __obstacleName;
+        __newObstacle.transform.parent = this.transform;
 
+        _listObstaclesInstances.Add(__newObstacle);
+
+        _spawnTimer = ATimer.WaitSeconds(_spawnRate, delegate
+        {
+            if (__newObstacle.name == "Obstacle Jump 1")
+            {
+                SpawnObstacle("Obstacle Bridge 2");
+            }
+            else
+            {
+                SpawnNewObstacle();
+            }
+        });
+    }
+
+    private void SpawnObstacle (string p_obstacleName)
+    {
+        int __targetObstacleIndex = 0;
+        for (int i = 0; i < _dictObstacles[_currentLevel].Count; i ++)
+        {
+            if (_dictObstacles[_currentLevel][i].name == p_obstacleName)
+            {
+                __targetObstacleIndex = i;
+                break;
+            }
+        }
+
+        GameObject __newObstacle = _dictObstacles[_currentLevel][__targetObstacleIndex];
         switch (__newObstacle.GetComponent<Obstacles>().obstacleType)
         {
             case Obstacles.ObstacleType.ENEMY:
                 _spawnPosition.y = 2f;
                 break;
             case Obstacles.ObstacleType.OBSTACLE:
-                // _spawnPosition.y = UnityEngine.Random.Range(-1f, 1f);
-                _spawnPosition.y = 0.74f;
+                _spawnPosition.y = -0.3f;
                 break;
-        }  
+        }
+        _spawnPosition.z = 0f;
 
         __newObstacle = Instantiate(__newObstacle, _spawnPosition, Quaternion.identity) as GameObject;
 
