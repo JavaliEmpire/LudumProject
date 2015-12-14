@@ -73,7 +73,7 @@ public class ObstacleManager : MonoBehaviour
                 _spawnPosition.y = 2f;    
                 break;
             case Obstacles.ObstacleType.OBSTACLE:
-                _spawnPosition.y = -0.3f;
+                _spawnPosition.y = 0.9f;
                 break;
         }
         _spawnPosition.z = 0f;
@@ -115,7 +115,7 @@ public class ObstacleManager : MonoBehaviour
                 _spawnPosition.y = 2f;
                 break;
             case Obstacles.ObstacleType.OBSTACLE:
-                _spawnPosition.y = -0.3f;
+                _spawnPosition.y = 0.9f;
                 break;
         }
         _spawnPosition.z = 0f;
