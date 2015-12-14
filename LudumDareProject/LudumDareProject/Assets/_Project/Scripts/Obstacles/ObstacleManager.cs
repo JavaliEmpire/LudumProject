@@ -70,7 +70,7 @@ public class ObstacleManager : MonoBehaviour
         switch (__newObstacle.GetComponent<Obstacles>().obstacleType)
         {
             case Obstacles.ObstacleType.ENEMY:
-                _spawnPosition.y = 2f;    
+                _spawnPosition.y = 8f;    
                 break;
             case Obstacles.ObstacleType.OBSTACLE:
                 _spawnPosition.y = 0.9f;
