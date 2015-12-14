@@ -23,6 +23,8 @@ public class GameModel : MonoBehaviour
 
 	public Action refreshStatsAction;
 
+	public Action<float> modifyParallaxMultiplierAction;
+
     #endregion
 
 
@@ -62,6 +64,12 @@ public class GameModel : MonoBehaviour
     void Start()
     {
         LoadData();
+
+		int __currentLevel = dictData[DataType.CHARACTER_LEVEL.ToString()];
+
+		float __multiplier = 1f + (((float)__currentLevel - 1f) / 10f);
+
+		modifyParallaxMultiplierAction(__multiplier);
     }
 
 	public void AddExp(int p_exp)
@@ -74,10 +82,16 @@ public class GameModel : MonoBehaviour
 
 		if (dictData[DataType.CHARACTER_EXPERIENCE.ToString()] >= __expToNextLevel)
 		{
-			dictData[DataType.CHARACTER_LEVEL.ToString()] += 1;
+			__characterLevel += 1;
+
+			dictData[DataType.CHARACTER_LEVEL.ToString()] = __characterLevel;
 			dictData[DataType.CHARACTER_EXPERIENCE.ToString()] = 0;
 
 			refreshStatsAction();
+
+			float __newMultiplier = 1f + (((float) __characterLevel - 1f) / 10f);
+
+			modifyParallaxMultiplierAction(__newMultiplier);
 		}
 	}
 

@@ -39,7 +39,6 @@ public class GameCanvas : MonoBehaviour
 
 	public void Initialize()
 	{
-
 		RefreshStats();
 
 		ListenButtonEvents();
@@ -49,11 +48,16 @@ public class GameCanvas : MonoBehaviour
 
 	public void ListenButtonEvents()
 	{
-		goButton.onButtonClick -= HandleGoButtonPress;
-		backButton.onButtonClick -= HandleBackButtonPress; 
+		DisableInputs();
 
 		goButton.onButtonClick += HandleGoButtonPress;
 		backButton.onButtonClick += HandleBackButtonPress;
+	}
+
+	void DisableInputs()
+	{
+		goButton.onButtonClick -= HandleGoButtonPress;
+		backButton.onButtonClick -= HandleBackButtonPress;
 	}
 
 	public void RefreshStats()
@@ -77,14 +81,14 @@ public class GameCanvas : MonoBehaviour
 
 	private void HandleGoButtonPress()
 	{
-		goButton.onButtonClick -= HandleGoButtonPress;
+		DisableInputs();
 
 		HideOnHoldGroup(onGoButtonPress);
 	}
 
 	private void HandleBackButtonPress()
 	{
-		backButton.onButtonClick -= HandleBackButtonPress; 
+		DisableInputs();
 
 		Action __fadeToMenu = delegate
 		{

@@ -16,32 +16,50 @@ public class MenuCanvas : MonoBehaviour
 
 	#endregion
 
-	void Awake()
+	public void ListenEvents()
 	{
-		playButton.onButtonClick += delegate 
-		{
-			FadeCanvas.instance.FadeTo(delegate 
-			{
-				StateMachine.ChangeState(StateMachine.StateType.GAME);
-			}, null);
-		};
+		DisableInputs();
 
-		exitButton.onButtonClick += delegate 
-		{
-			FadeCanvas.instance.FadeTo(delegate 
-			{
-				Application.Quit();
-			}, null);
-		};
-
-		creditsButton.onButtonClick += delegate
-		{
-			FadeCanvas.instance.FadeTo(delegate 
-			{
-				StateMachine.ChangeState(StateMachine.StateType.CREDITS);
-			}, null);
-		};
+		playButton.onButtonClick += HandlePlayButtonPres;
+		exitButton.onButtonClick += HandleExitButtonPress;
+		creditsButton.onButtonClick += HandleCreditsButtonPress;
 	}
 
+	void HandlePlayButtonPres()
+	{
+		DisableInputs();
+
+		FadeCanvas.instance.FadeTo(delegate 
+		{
+			StateMachine.ChangeState(StateMachine.StateType.GAME);
+		}, null);
+	}
+
+	void HandleExitButtonPress()
+	{
+		DisableInputs();
+
+		FadeCanvas.instance.FadeTo(delegate 
+		{
+			Application.Quit();
+		}, null);
+	}
+
+	void HandleCreditsButtonPress()
+	{
+		DisableInputs();
+
+		FadeCanvas.instance.FadeTo(delegate 
+		{
+			StateMachine.ChangeState(StateMachine.StateType.CREDITS);
+		}, null);
+	}
+
+	void DisableInputs()
+	{
+		playButton.onButtonClick -= HandlePlayButtonPres;
+		exitButton.onButtonClick -= HandleExitButtonPress;
+		creditsButton.onButtonClick -= HandleCreditsButtonPress;
+	}
 
 }

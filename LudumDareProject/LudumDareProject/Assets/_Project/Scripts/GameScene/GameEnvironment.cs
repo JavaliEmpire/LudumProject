@@ -48,7 +48,12 @@ public class GameEnvironment : MonoBehaviour
 		_player.onOutOfScreen += delegate (Action p_action)
 		{
 			ChangeState(GameStateType.ON_HOLD, false);
+
 			DisableSpawn();
+
+			GameModel.instance.dictData[GameModel.DataType.CHARACTER_EXPERIENCE.ToString()] = 0;
+
+			GameModel.instance.refreshStatsAction();
 
 			FadeCanvas.instance.FadeTo(p_action, delegate 
 			{
@@ -58,6 +63,11 @@ public class GameEnvironment : MonoBehaviour
 
 		_obstacleManager.Initialize();
 		_currentGameState = GameStateType.ON_HOLD;
+
+		GameModel.instance.modifyParallaxMultiplierAction += delegate (float p_value)
+		{
+			_background.SetMultiplier(p_value);
+		};		                                                        
     }
 
 	private void EnableSpawn()
