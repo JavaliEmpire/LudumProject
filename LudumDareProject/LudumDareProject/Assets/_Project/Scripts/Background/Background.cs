@@ -7,6 +7,7 @@ public class Background : MonoBehaviour
     #region Public Data
 
 	public OffsetScroller[] parallaxes;
+    public OffsetScrollerObject[] parallaxesObjects;
 
     #endregion
 
@@ -22,7 +23,12 @@ public class Background : MonoBehaviour
 			for (int i = 0; i < parallaxes.Length; i++)
 			{
 				parallaxes[i].scrollSpeedMultiplier = __currentMultiplier + __multiplierBoost * p_value;
+
 			}
+            for (int i = 0; i < parallaxesObjects.Length; i ++)
+            {
+                parallaxesObjects[i].scrollSpeedMultiplier = __currentMultiplier + __multiplierBoost * p_value;
+            }
 		});
 	}
 }
